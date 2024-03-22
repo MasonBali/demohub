@@ -1,0 +1,100 @@
+{
+  "Music": {
+    "100": {"What genre of music is known for its fast tempo and heavy use of electric guitars?": "Rock"},
+    "200": {"What is the name of the lead singer of Queen?": "Freddie Mercury"},
+    "300": {"What genre of music is known for its fast tempo and heavy use of turntables?": "Hip-hop"},
+    "400": {"Who composed the Four Seasons?": "Vivaldi"},
+    "500": {"What is the term for a chord where the notes are played one after the other, rather than all at once?": "Arpeggio"}
+  },
+  "Movies": {
+    "100": {"Who directed 'Jurassic Park'?": "Steven Spielberg"},
+    "200": {"Who directed 'Pulp Fiction'?": "Quentin Tarantino"},
+    "300": {"Who played the Joker in the 2008 movie 'The Dark Knight'?": "Heath Ledger"},
+    "400": {"What is the name of the sled in 'Citizen Kane'?": "Rosebud"},
+    "500": {"What movie won the Best Picture Oscar in 2024?": "Dune"}
+  },
+  "Python": {
+    "100": {"What function is used to print something in Python?": "print()"},
+    "200": {"How do you create a function in Python?": "def function"},
+    "300": {"What is the term for a function contained inside another function?": "Nested function"},
+    "400": {"What is the term for a function that is defined and immediately used?": "Lambda function"},
+    "500": {"What is the term for a function that can take any number of arguments?": "Variadic function"}
+  },
+  "CG": {
+    "100": {"What does CG stand for in terms of graphics?": "Computer Graphics"},
+    "200": {"What is the term for a 3D model's surface look and feel?": "Texture"},
+    "300": {"What is the term for the process of generating a 2D image from a 3D model?": "Rendering"},
+    "400": {"What is the term for a technique that simulates the scattering of light in translucent materials?": "Subsurface scattering"},
+    "500": {"What is the term for a method that increases image quality by reducing aliasing?": "Antialiasing"}
+  },
+  "Pipeline": {
+    "100": {"How is the new atomic pipeline called?": "pipeline"},
+    "200": {"What is the repo name for all ui stuff on the new pipeline?": "aui"},
+    "300": {"What is the new name of shotgun?": "flow production tracking"},
+    "400": {"What should users do when they have to update or reset before they can continue working?": "shotgun purging"},
+    "500": {"Which IDE is the best?": "VS Code, PyCharm, VIM, notepad, text editor, Atom, Eclipse, Sublime"}
+  },
+  "Anime": {
+    "100": {"What is the name of the main character in 'Naruto'?": "Naruto Uzumaki"},
+    "200": {"What is the name of the main character in 'Attack on Titan'?": "Eren Yeager"},
+    "300": {"What is the name of the main character in 'One Piece'?": "Monkey D. Luffy"},
+    "400": {"What is the name of the main character in 'Dragon Ball'?": "Goku"},
+    "500": {"What is the name of the main character in 'Death Note'?": "Light Yagami"}
+  },
+  "Cooking": {
+    "100": {"What is the term for a dish that is cooked and served in a single pan?": "One-pot meal"},
+    "200": {"What is the term for a small, round, metal dish used for cooking and serving?": "Ramekin"},
+    "300": {"What is the term for a dish cooked by prolonged exposure to heat in an oven or over a fire?": "Roast"},
+    "400": {"What is the term for a dish consisting of a hollowed-out piece of bread filled with soup?": "Bread bowl"},
+    "500": {"What is the term for a dish that is cooked using a slow, long, low-temperature method?": "Braising"}
+  },
+  "Series": {
+    "100": {"What is the name of the main character in 'Breaking Bad'?": "Walter White"},
+    "200": {"What is the name of the main character in 'The Sopranos'?": "Tony Soprano"},
+    "300": {"What is the name of the main character in 'The Wire'?": "Jimmy McNulty"},
+    "400": {"What is the name of the main character in 'The Office'?": "Michael Scott"},
+    "500": {"What is the name of the main character in 'The Simpsons'?": "Homer Simpson"}
+  },
+  "Kardashians": {
+    "100": {"What is the name of the oldest Kardashian sister?": "Kourtney"},
+    "200": {"What is the name of the youngest Kardashian sister?": "Khloe"},
+    "300": {"What is the name of the Kardashian sister who is married to Kanye West?": "Kim"},
+    "400": {"What is the name of the Kardashian sister who is married to Travis Barker?": "Kourtney"},
+    "500": {"What is the name of the Kardashian sister who is married to Scott Disick?": "Kourtney"}
+  },
+  "Geography": {
+    "100": {"What is the capital of France?": "Paris"},
+    "200": {"What is the capital of Italy?": "Rome"},
+    "300": {"What is the capital of Spain?": "Madrid"},
+    "400": {"What is the capital of Germany?": "Berlin"},
+    "500": {"What is the capital of the United Kingdom?": "London"}
+  },
+  "Pixar": {
+    "100": {"What is the name of the main character in 'Toy Story'?": "Woody"},
+    "200": {"What is the name of the main character in 'Finding Nemo'?": "Marlin"},
+    "300": {"What is the name of the main character in 'The Incredibles'?": "Mr. Incredible"},
+    "400": {"What is the name of the main character in 'Monsters, Inc.'?": "Sulley"},
+    "500": {"What is the name of the main character in 'Ratatouille'?": "Remy"}
+  },
+  "Disney": {
+    "100": {"What is the name of the main character in 'The Lion King'?": "Simba"},
+    "200": {"What is the name of the main character in 'Aladdin'?": "Aladdin"},
+    "300": {"What is the name of the main character in 'Beauty and the Beast'?": "Belle"},
+    "400": {"What is the name of the main character in 'The Little Mermaid'?": "Ariel"},
+    "500": {"What is the name of the main character in 'Mulan'?": "Mulan"}
+  },
+  "Gaming": {
+    "100": {"What is the name of the main character in 'The Legend of Zelda'?": "Link"},
+    "200": {"What is the name of the main character in 'Super Mario Bros.'?": "Mario"},
+    "300": {"What is the name of the main character in 'Sonic the Hedgehog'?": "Sonic"},
+    "400": {"Nintendo began as a company selling which products?": "Playing cards"},
+    "500": {"What is the name of the final course in all “Mario Kart” video games?": "Rainbow Road"}
+  },
+  "Open": {
+    "100": {"With which person in history or present time would you like to have a beer with?": "Open answer"},
+    "200": {"What is the best way to spend a day off if you would be rich like Bezos, Musk and Gates?": "Open answer"},
+    "300": {"In which movie or series would you like to play a role?": "Open answer"},
+    "400": {"What is something interesting, funny or insightful that you have learned recently?": "Open answer"},
+    "500": {"In an alternate universe what would you do instead of pipeline?": "Open answer"}
+  }
+}
