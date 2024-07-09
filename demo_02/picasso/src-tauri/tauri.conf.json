@@ -1,0 +1,107 @@
+{
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:3000",
+    "distDir": "../out"
+  },
+  "package": {
+    "productName": "picasso",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "fs": {
+        "all": true,
+        "scope": [
+          "$publicPath/**",
+          "$public/**",
+          "$DATA/**",
+          "$DATA/*",
+          "$DATA/",
+          "$HOME/**",
+          "$HOME/*",
+          "$HOME/",
+          "$CONFIG/**",
+          "$CONFIG/*",
+          "$CONFIG/",
+          "$APP/**",
+          "$APP/*",
+          "$APP/",
+          "$APPDATA/**",
+          "$APPDATA/*",
+          "$APPDATA/",
+          "$APPCONFIG/**",
+          "$APPCONFIG/*",
+          "$APPCONFIG/"
+        ]
+      },
+      "path": {
+        "all": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": [
+          "http://localhost:8000/**",
+          "http://localhost:8000/*",
+          "http://localhost:8000",
+          "http://127.0.0.1:8000/img2img_turbo_xl/",
+          "http://127.0.0.1:8000/txt2img_turbo_xl/",
+          "http://127.0.0.1:8000/**",
+          "http://127.0.0.1:8000/*"
+        ]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "Ploty",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 1080,
+        "resizable": true,
+        "title": "picasso",
+        "width": 1920,
+        "maximized": true
+      }
+    ]
+  }
+}
