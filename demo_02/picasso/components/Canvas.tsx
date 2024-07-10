@@ -6,6 +6,7 @@ import { RgbaColor } from "react-colorful";
 
 import { saveImage } from "@/lib/db";
 import { sendPostRequest2 } from "@/lib/api";
+import { stylePrompts } from "@/lib/styles";
 import { writeBinaryFile, createDir, readBinaryFile } from "@tauri-apps/api/fs";
 
 import { v4 as uuidv4 } from "uuid";
@@ -18,6 +19,7 @@ const Canvas = () => {
   const [brushSize, setBrushSize] = useState<number>(5);
   const [color, setColor] = useState<string>("rgba(0,0,0,1)");
   const [prompt, setPrompt] = useState<string>("");
+  const [style, setStyle] = useState<string>("");
   // useRef variables
   const canvasMaskRef = useRef<HTMLDivElement>(null);
   const animationId = useRef<any>(null);
@@ -102,6 +104,10 @@ const Canvas = () => {
     setPrompt(text);
   };
 
+  const onStyleSelection = (styleValue: string) => {
+    setStyle(styleValue);
+  };
+
   const bringCanvasElementsToFront = () => {
     if (!canvas) return;
     canvas
@@ -158,15 +164,12 @@ const Canvas = () => {
 
   const createImage = async (outputFilePath: string) => {
     return new Promise(async (resolve, reject) => {
-      if (!canvas) {
-        console.log("No active scene selected");
-        return;
-      }
+      if (!canvas) return;
       // Read the file as a data URL
       const binaryData = await readBinaryFile(outputFilePath);
       // Convert the binary data to a Blob
       const blob = new Blob([binaryData], { type: "image/png" });
-      await saveImage(blob);
+      await saveImage(outputFilePath, blob);
       // Create a data URL from the Blob
       const liveOutputUrl = URL.createObjectURL(blob);
       const canvasMask = canvasMaskRef.current?.getBoundingClientRect();
@@ -197,6 +200,11 @@ const Canvas = () => {
       const top = maskBounds.top - canvasBounds.top;
       const width = maskBounds.width;
       const height = maskBounds.height;
+      // get the prompt from the style if style is selected
+      let stylePrompt = prompt;
+      if (style) {
+        stylePrompt = stylePrompts[style].replace("{<prompt>}", prompt);
+      }
 
       // Use toDataURL with cropping parameters to generate the image of the canvasMask area
       const canvasData = canvas.toDataURL({
@@ -227,6 +235,9 @@ const Canvas = () => {
         img.scaleToWidth(resolution.width);
         img.scaleToHeight(resolution.height);
         img.filters.push(new fabric.filters.Noise({ noise: 96 }));
+        if (style === "Sketch") {
+          img.filters.push(new fabric.filters.Grayscale({ mode: "average" }));
+        }
         img.applyFilters();
 
         let croppedBase64 = img.toDataURL({
@@ -246,7 +257,7 @@ const Canvas = () => {
         );
         await writeBinaryFile(initImgPath, imageBytes);
         const data: any = {
-          prompt: prompt,
+          prompt: stylePrompt,
           width: resolution.width,
           height: resolution.height,
           output_path: outputPath,
@@ -308,6 +319,7 @@ const Canvas = () => {
           onBrushSizeChange={onBrushSizeChange}
           onGenerateImage={onGenerateImage}
           onTextChange={onTextChange}
+          onStyleSelection={onStyleSelection}
         />
       </div>
     </div>

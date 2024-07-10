@@ -16,6 +16,7 @@ interface ToolboxProps {
   onBrushSizeChange: (size: number[]) => void;
   onGenerateImage: () => void;
   onTextChange: (text: string) => void;
+  onStyleSelection: (style: string) => void;
 }
 
 export default function Toolbox(props: ToolboxProps) {
@@ -34,17 +35,20 @@ export default function Toolbox(props: ToolboxProps) {
           </Button>
         </div>
         <div className="flex gap-2">
-          <Button onClick={() => {}} className="w-12 h-12">
+          <Button onClick={() => {props.onStyleSelection("Sketch")}} className="w-12 h-12">
             <div className="absolute w-8 h-8 text-xl">S</div>
           </Button>
-          <Button onClick={() => {}} className="w-12 h-12">
+          <Button onClick={() => {props.onStyleSelection("Watercolor")}} className="w-12 h-12">
             <div className="absolute w-8 h-8 text-xl">W</div>
           </Button>
-          <Button onClick={() => {}} className="w-12 h-12">
+          <Button onClick={() => {props.onStyleSelection("Isometric")}} className="w-12 h-12">
+            <div className="absolute w-8 h-8 text-xl">I</div>
+          </Button>
+          <Button onClick={() => {props.onStyleSelection("Realistic")}} className="w-12 h-12">
             <div className="absolute w-8 h-8 text-xl">R</div>
           </Button>
-          <Button onClick={() => {}} className="w-12 h-12">
-            <div className="absolute w-8 h-8 text-xl">V</div>
+          <Button onClick={() => {props.onStyleSelection("Lowpoly")}} className="w-12 h-12">
+            <div className="absolute w-8 h-8 text-xl">L</div>
           </Button>
         </div>
         <div className="flex gap-2">

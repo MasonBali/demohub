@@ -1,6 +1,6 @@
 import Dexie, { Table } from "dexie";
 import { v4 as uuidv4 } from "uuid";
-import { createDir, writeBinaryFile } from "@tauri-apps/api/fs";
+import { createDir, writeBinaryFile, removeFile } from "@tauri-apps/api/fs";
 import path from "path";
 
 const DATABASE_NAME = "PicassoDB";
@@ -24,32 +24,19 @@ export class PicassoDB extends Dexie {
 export const db = new PicassoDB();
 
 // Function to save an image blob
-export async function saveImage(blob: Blob) {
-  const { homeDir } = await import("@tauri-apps/api/path");
+export async function saveImage(filePath: string, blob: Blob) {
   const imageId = uuidv4();
-  const fileName = `${imageId}.png`;
-
-  // Convert Blob to ArrayBuffer
-  const arrayBuffer = await blob.arrayBuffer();
-
-  // Get the path to the public directory
-  const folderPath = path.join(await homeDir(), "picasso");
-  await createDir(folderPath, { recursive: true });
-  const filePath = path.join(folderPath, fileName);
-
-  // Use Tauri's API to write the file
-  await writeBinaryFile({
-    path: filePath,
-    contents: new Uint8Array(arrayBuffer),
-  });
   const imageItem: ImageItem = { id: imageId, path: filePath, blob: blob };
   return await db.images.add(imageItem);
 }
 
 export async function resetImageDatabase() {
   return db.transaction("rw", db.images, async () => {
+    // delete the png image filepath
+    const images = await db.images.toArray();
+    images.forEach(async (image) => {
+      await removeFile(image.path);
+    });
     await db.images.clear();
-    // Optionally, repopulate the table with initial data
-    // await populateImages();
   });
 }

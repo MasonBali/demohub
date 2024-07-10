@@ -29,7 +29,7 @@ export function ImageGallery() {
       {imageUrls.map(({ id, url }) => (
         <div
           key={id}
-          className="relative w-96 h-96 aspect-square shadow-lg rounded-lg overflow-hidden duration-150 hover:scale-105 hover:shadow-xl border-4 border-white "
+          className="relative w-96 h-96 aspect-square shadow-lg rounded-lg overflow-hidden duration-150 opacity-50 hover:scale-105 hover:shadow-xl hover:opacity-100 border-4 border-white "
         >
           <Image
             id={id}

@@ -103,7 +103,7 @@ export default function Home() {
             router.push("/sentry-example-page");
           }}
         >
-          Sentry Test
+          Sentry
         </Button>
         <Button
           onClick={() => {

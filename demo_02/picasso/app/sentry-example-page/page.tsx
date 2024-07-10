@@ -88,10 +88,10 @@ export default function Page() {
       <div className="fixed right-10 bottom-10 flex flex-row gap-5">
         <Button
           onClick={() => {
-            router.push("/home");
+            router.push("..");
           }}
         >
-          Sentry Test
+          Back
         </Button>
       </div>
     </div>
