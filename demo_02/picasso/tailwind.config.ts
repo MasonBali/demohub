@@ -75,13 +75,13 @@ const config = {
       fontFamily: {
         virgil: ["Virgil", "sans-serif"], // Add your font as the first option
       },
-      backgroundImage: theme => ({
-        'icon-select': "url('/icons/select.svg')",
-        'icon-draw': "url('/icons/draw.svg')",
-        'icon-generate': "url('/icons/generate.svg')",
-        'icon-clear': "url('/icons/clear.svg')",
-        'icon-circle': "url('/icons/circle.svg')",
-        'icon-rectangle': "url('/icons/rectangle.svg')",
+      backgroundImage: (theme) => ({
+        "icon-select": "url('/icons/select.svg')",
+        "icon-draw": "url('/icons/draw.svg')",
+        "icon-generate": "url('/icons/generate.svg')",
+        "icon-clear": "url('/icons/clear.svg')",
+        "icon-circle": "url('/icons/circle.svg')",
+        "icon-rectangle": "url('/icons/rectangle.svg')",
         // Add more icons as needed
       }),
     },

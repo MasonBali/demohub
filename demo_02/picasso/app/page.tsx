@@ -11,6 +11,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 import { useStore } from "@/components/Store";
 
 import { resetImageDatabase } from "@/lib/db";
+import { MemoryGame } from "@/components/MemoryGame";
 
 let intervalId: any = null;
 
@@ -22,6 +23,7 @@ export default function Home() {
   // New state to track if the component has mounted
   const [hasMounted, setHasMounted] = useState(false);
   const [reset, setReset] = useState(false);
+  const [game, setGame] = useState(false);
   // useRef variables
   const hasRunPythonCommand = useRef(false); // use a ref instead of state
 
@@ -92,10 +94,23 @@ export default function Home() {
       </div>
 
       <div className="fixed w-screen h-screen top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2">
-        <ImageGallery />
+        {game ? <MemoryGame /> : <ImageGallery />}
       </div>
       <div className="fixed top-10 left-10">
         <Label className="text-4xl font-extrabold font-virgil">Picasso</Label>
+      </div>
+      <div className="fixed left-10 bottom-10 flex flex-row gap-5 jutify-end items-center">
+        <Button
+          onClick={() => {
+            if (game) {
+              setGame(false);
+            } else {
+              setGame(true);
+            }
+          }}
+        >
+          {game ? "Gallery" : "Game"}
+        </Button>
       </div>
       <div className="fixed right-10 bottom-10 flex flex-row gap-5 jutify-end items-center">
         <Button

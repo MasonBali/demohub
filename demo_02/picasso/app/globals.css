@@ -76,8 +76,8 @@
 }
 
 @font-face {
-  font-family: 'Virgil'; /* Use a custom name for your font */
-  src: url('/fonts/Virgil.woff2') format('woff2'); /* Adjust the path as necessary */
+  font-family: "Virgil"; /* Use a custom name for your font */
+  src: url("/fonts/Virgil.woff2") format("woff2"); /* Adjust the path as necessary */
   font-weight: normal;
   font-style: normal;
 }

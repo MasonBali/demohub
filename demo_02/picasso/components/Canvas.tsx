@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from "react";
 
 import fabric from "../node_modules/fabric/dist";
 import Toolbox from "@/components/Toolbox";
-import { RgbaColor } from "react-colorful";
+import { useStore } from "@/components/Store";
 
 import { saveImage } from "@/lib/db";
 import { sendPostRequest2 } from "@/lib/api";
 import { stylePrompts } from "@/lib/styles";
+
 import { writeBinaryFile, createDir, readBinaryFile } from "@tauri-apps/api/fs";
 
+import { RgbaColor } from "react-colorful";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
 
@@ -19,7 +21,6 @@ const Canvas = () => {
   const [brushSize, setBrushSize] = useState<number>(5);
   const [color, setColor] = useState<string>("rgba(0,0,0,1)");
   const [prompt, setPrompt] = useState<string>("");
-  const [style, setStyle] = useState<string>("");
   // useRef variables
   const canvasMaskRef = useRef<HTMLDivElement>(null);
   const animationId = useRef<any>(null);
@@ -102,10 +103,6 @@ const Canvas = () => {
 
   const onTextChange = (text: string) => {
     setPrompt(text);
-  };
-
-  const onStyleSelection = (styleValue: string) => {
-    setStyle(styleValue);
   };
 
   const bringCanvasElementsToFront = () => {
@@ -202,6 +199,7 @@ const Canvas = () => {
       const height = maskBounds.height;
       // get the prompt from the style if style is selected
       let stylePrompt = prompt;
+      const style = useStore.getState().style;
       if (style) {
         stylePrompt = stylePrompts[style].replace("{<prompt>}", prompt);
       }
@@ -319,7 +317,6 @@ const Canvas = () => {
           onBrushSizeChange={onBrushSizeChange}
           onGenerateImage={onGenerateImage}
           onTextChange={onTextChange}
-          onStyleSelection={onStyleSelection}
         />
       </div>
     </div>
