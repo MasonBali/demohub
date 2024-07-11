@@ -59,6 +59,21 @@ const Canvas = () => {
     }
   };
 
+  const onAddTriangle = () => {
+    console.log("onAddTriangle");
+    if (canvas) {
+      canvas.isDrawingMode = false;
+      const triangle = new fabric.Triangle({
+        width: 100,
+        height: 100,
+        fill: color,
+        left: canvas.width / 2 - 50,
+        top: canvas.height / 2 - 50,
+      });
+      canvas.add(triangle);
+    }
+  };
+
   const onSetBrush = () => {
     console.log("onSetBrush");
     if (canvas && brush) {
@@ -313,6 +328,7 @@ const Canvas = () => {
           onClear={onClear}
           onAddCircle={onAddCircle}
           onAddRectangle={onAddRectangle}
+          onAddTriangle={onAddTriangle}
           onColorChange={onColorChange}
           onBrushSizeChange={onBrushSizeChange}
           onGenerateImage={onGenerateImage}

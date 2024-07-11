@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Picasso Splash Screen</title>
+    <style>
+      @font-face {
+        font-family: "Virgil";
+        src: url("./fonts/Virgil.woff2") format("woff2");
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("./images/splashscreen5.jpeg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-family: "Virgil", sans-serif;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .loader {
+        text-align: center;
+      }
+      .spinner {
+        border: 5px solid #3636365b;
+        border-top: 5px solid #182127;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      .whitebox {
+        background-color: #ffffffc2;
+        border-radius: 90px;
+        gap: 20px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-shadow: 4px 8px 50px rgba(0, 0, 0, 0.9);
+      }
+      .text {
+        color: #000;
+      }
+      .top-center {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="top-center">
+        <h1 class="text">Welcome to Picasso</h1>
+      </div>
+      <div class="whitebox">
+        <h3 class="text">Launching stable diffusion server...</h3>
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </body>
+</html>

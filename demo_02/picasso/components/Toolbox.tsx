@@ -15,6 +15,7 @@ interface ToolboxProps {
   onClear: () => void;
   onAddCircle: () => void;
   onAddRectangle: () => void;
+  onAddTriangle: () => void;
   onColorChange: (color: RgbaColor) => void;
   onBrushSizeChange: (size: number[]) => void;
   onGenerateImage: () => void;
@@ -126,6 +127,9 @@ export default function Toolbox(props: ToolboxProps) {
           </Button>
           <Button onClick={props.onAddRectangle} className="w-12 h-12">
             <div className="absolute w-8 h-8 bg-icon-rectangle bg-no-repeat bg-center bg-cover" />
+          </Button>
+          <Button onClick={props.onAddTriangle} className="w-12 h-12">
+            <div className="absolute w-8 h-8 bg-icon-triangle bg-no-repeat bg-center bg-cover" />
           </Button>
         </div>
       </div>

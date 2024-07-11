@@ -24,6 +24,7 @@ export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
   const [reset, setReset] = useState(false);
   const [game, setGame] = useState(false);
+  const [serverIsReadyValue, setServerIsReadyValue] = useState(false);
   // useRef variables
   const hasRunPythonCommand = useRef(false); // use a ref instead of state
 
@@ -34,6 +35,7 @@ export default function Home() {
       scriptPath: paths.plotyPythonModule,
       serverReadyPath: paths.plotyServerReady,
     });
+    await invoke("close_splashscreen");
   };
 
   // Set hasMounted to true after the component has mounted
@@ -48,10 +50,15 @@ export default function Home() {
         hasRunPythonCommand.current = true;
         intervalId = setInterval(() => {
           setServerIsReady(true);
+          setServerIsReadyValue(true);
         }, 1000);
       });
     }
   }, [hasMounted]);
+
+  useEffect(() => {
+    setServerIsReadyValue(serverIsReady);
+  }, [serverIsReady]);
 
   // Don't render the div until the component has mounted
   if (!hasMounted) {
@@ -67,6 +74,14 @@ export default function Home() {
         }
       }}
     >
+      <div className={`${serverIsReadyValue ? "hidden" : "visible"}`}>
+        <div className="fixed left-1/2 top-1/2 z-50 flex h-250r w-400r -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl bg-white text-center shadow-xl p-10">
+          <h3 className="z-50 w-full text-dark font-virgil text-4xl">
+            STABLE DIFFUSION SERVER IS LAUNCHING...
+          </h3>
+        </div>
+        <div className="fixed z-40 h-screen w-screen bg-black opacity-50" />
+      </div>
       <div
         className={`fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 backdrop-blur-sm bg-black bg-opacity-30 w-screen h-screen z-30 duration-500 transition-all ease-in-out
         ${reset ? "visible" : "hidden"}

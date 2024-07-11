@@ -100,7 +100,17 @@
         "resizable": true,
         "title": "picasso",
         "width": 1920,
-        "maximized": true
+        "maximized": true,
+        "visible": false,
+        "label": "main"
+      },
+      {
+        "width": 1024,
+        "height": 576,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "center": true
       }
     ]
   }

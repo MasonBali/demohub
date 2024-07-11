@@ -82,6 +82,9 @@ const config = {
         "icon-clear": "url('/icons/clear.svg')",
         "icon-circle": "url('/icons/circle.svg')",
         "icon-rectangle": "url('/icons/rectangle.svg')",
+        "icon-triangle": "url('/icons/triangle.svg')",
+        "icon-memory": "url('/icons/memory.svg')",
+        "icon-diagonal": "url('/icons/diagonal.svg')",
         // Add more icons as needed
       }),
     },

@@ -5,6 +5,7 @@ use std::process::{ Command };
 use std::fs;
 use std::time::Duration;
 use std::thread;
+use tauri::{ Manager, Window };
 
 #[tauri::command]
 fn run_python_command(
@@ -54,11 +55,23 @@ fn run_python_command(
     }
 }
 
+// This command must be async so that it doesn't run on the main thread.
+#[tauri::command]
+async fn close_splashscreen(window: Window) {
+    // Close splashscreen
+    window
+        .get_window("splashscreen")
+        .expect("no window labeled 'splashscreen' found")
+        .close()
+        .unwrap();
+    // Show main window
+    window.get_window("main").expect("no window labeled 'main' found").show().unwrap();
+}
+
 fn main() {
     simple_logger::SimpleLogger::new().init().unwrap();
-    tauri::Builder
-        ::default()
-        .invoke_handler(tauri::generate_handler![run_python_command])
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![run_python_command, close_splashscreen])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

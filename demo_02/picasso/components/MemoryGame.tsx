@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 
 export function MemoryGame() {
   const images = useLiveQuery(() => db.images.toArray());
-  const [imageUrls, setImageUrls] = useState<{ id: string; url: string }[]>([]);
+  const [imageUrls, setImageUrls] = useState<
+    { id: string; url: string; score: number }[]
+  >([]);
   const [revealedIds, setRevealedIds] = useState<string[]>([]);
   const [matchedIds, setMatchedIds] = useState<string[]>([]);
   const [score, setScore] = useState(0);
@@ -15,6 +17,7 @@ export function MemoryGame() {
     const urls = images.map((img, index) => ({
       id: `${img.id}-${index}`, // Append index to make id unique
       url: URL.createObjectURL(img.blob),
+      score: Math.floor(Math.random() * 100) + 1, // Assign random score between 1-100
     }));
     // Duplicate and shuffle
     const duplicatedUrls = [
@@ -53,10 +56,15 @@ export function MemoryGame() {
       const secondBaseId = getBaseId(secondUniqueId);
       // Check if the base IDs match, indicating a match
       if (firstBaseId === secondBaseId) {
+        const matchedImage = imageUrls.find(
+          (image) => image.id === firstUniqueId || image.id === secondUniqueId
+        );
         // Update matchedIds with baseId to keep both images visible
         setMatchedIds((prev) => [...prev, firstBaseId]);
         // Increment score
-        setScore((prev) => prev + 1);
+        if (matchedImage) {
+          setScore((prev) => prev + matchedImage.score); // Add matched image's score to total
+        }
       }
 
       // Clear revealedIds after a delay, whether it's a match or not
@@ -81,9 +89,9 @@ export function MemoryGame() {
             key={index}
             className={`relative w-96 h-96 aspect-square shadow-lg rounded-lg overflow-hidden duration-150 ${
               revealedIds.includes(id) || isMatched
-                ? "opacity-100"
+                ? "opacity-100 bg-transparent"
                 : "opacity-50"
-            } hover:scale-105 hover:shadow-xl border-4 border-white`}
+            } hover:scale-105 hover:shadow-xl border-4 bg-icon-diagonal bg-fill border-white bg-slate-600`}
             onClick={() => handleImageClick(id)}
           >
             <Image
@@ -102,7 +110,7 @@ export function MemoryGame() {
           </div>
         );
       })}
-      <div className="fixed top-10 right-10 font-virgil text-2xl">
+      <div className="fixed top-10 right-10 font-virgil text-2xl bg-white rounded-lg p-3 shadow-lg">
         Score: {score}
       </div>
     </div>
