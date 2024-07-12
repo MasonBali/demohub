@@ -120,6 +120,17 @@ export default function Toolbox(props: ToolboxProps) {
           >
             <div className="absolute w-8 h-8 text-xl">L</div>
           </Button>
+          {/* insert new picasso button here */}
+          <Button
+            onClick={() => {
+              setStyle("Picasso");
+            }}
+            className={`w-12 h-12 ${
+              styleValue === "Picasso" && "bg-blue-500 hover:bg-blue-500"
+            }`}
+          >
+            <div className="absolute w-8 h-8 text-xl">P</div>
+          </Button>
         </div>
         <div className="flex gap-2">
           <Button onClick={props.onAddCircle} className="w-12 h-12">

@@ -9,4 +9,6 @@ export const stylePrompts: any = {
     "isometric style ({<prompt>}) . vibrant, beautiful, crisp, detailed, ultra detailed, intricate",
   Lowpoly:
     "low-poly style ({<prompt>}). ambient occlusion, low-poly game art, polygon mesh, jagged, blocky, wireframe edges, centered composition",
+  Picasso:
+    "Picasso style ({<prompt>}). cubism, abstract, surreal, modern, contemporary, vibrant, colorful, highly detailed, intricate",
 };
