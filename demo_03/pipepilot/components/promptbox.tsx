@@ -35,9 +35,9 @@ export default function PromptBox() {
       )}
 
       <form onSubmit={handleSubmit} className="w-full">
-        <div className="w-full overflow-auto rounded-lg border border-white border-opacity-30 bg-white bg-opacity-20 p-2 backdrop-filter">
+        <div className="w-full rounded-lg border border-white border-opacity-30 bg-white bg-opacity-20 p-2 text-white backdrop-filter">
           <input
-            className="h-full w-full resize-none rounded-md bg-transparent p-2 text-lg text-white outline-none"
+            className="h-full w-full resize-none rounded-md bg-white bg-opacity-0 p-2 text-lg text-white outline-none"
             value={input}
             placeholder="Write something and hit enter..."
             onChange={handleInputChange}

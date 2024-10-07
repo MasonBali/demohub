@@ -22,20 +22,20 @@ export const MenuToggle: React.FC<MenuToggleProps> = ({ toggle }) => (
       <Path
         variants={{
           closed: { d: "M 2 2.5 L 10 2.5" },
-          open: { d: "M 10 8 L 25 -7" },
+          open: { d: "M -20 -20 L 8 7" },
         }}
       />
       <Path
         variants={{
-          closed: { opacity: 0 },
-          open: { opacity: 1, d: "M 2 16.346 L 20 16.346" },
+          closed: { opacity: 1, d: "M 2 2.5 L 10 2.5" },
+          open: { opacity: 1, d: "M 10 8 L 25 -7" },
         }}
         transition={{ duration: 0.1 }}
       />
       <Path
         variants={{
           closed: { d: "M 2 16.346 L 20 16.346" },
-          open: { d: "M -20 -20 L 8 7" },
+          open: { opacity: 1, d: "M 10 16.346 L 10 16.346" },
         }}
       />
     </svg>
