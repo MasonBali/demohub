@@ -24,6 +24,7 @@ export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
   const [reset, setReset] = useState(false);
   const [game, setGame] = useState(false);
+  const [login, setLogin] = useState(false);
   const [serverIsReadyValue, setServerIsReadyValue] = useState(false);
   // useRef variables
   const hasRunPythonCommand = useRef(false); // use a ref instead of state
@@ -113,6 +114,25 @@ export default function Home() {
       </div>
       <div className="fixed top-10 left-10">
         <Label className="text-4xl font-extrabold font-virgil">Picasso</Label>
+      </div>
+      <div className="fixed right-10 top-10 flex flex-row gap-5 jutify-end items-center">
+        <Button
+          onClick={async () => {
+            if (login) {
+              invoke("logout").then(() => {
+                console.log("logged out");
+                setLogin(false);
+              });
+            } else {
+              invoke("login").then(() => {
+                console.log("logged in");
+                setLogin(true);
+              });
+            }
+          }}
+        >
+          {login ? "Sign Out" : "Sign In"}
+        </Button>
       </div>
       <div className="fixed left-10 bottom-10 flex flex-row gap-5 jutify-end items-center">
         <Button

@@ -1,0 +1,3 @@
+[submodule "demo_04/nextjs-starter"]
+	path = demo_04/nextjs-starter
+	url = https://github.com/once-ui-system/nextjs-starter.git

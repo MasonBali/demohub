@@ -1,11 +1,55 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 // #![cfg_attr(not(debug_assertions), windows_subsystem = "console")]
-use std::env;
 use std::process::{ Command };
 use std::fs;
 use std::time::Duration;
 use std::thread;
-use tauri::{ Manager, Window };
+use tauri::{ Manager, Window, AppHandle };
+use reqwest;
+use serde_json::Value;
+use std::net::TcpStream;
+use std::path::PathBuf;
+
+
+fn is_server_running(port: u16) -> bool {
+    TcpStream::connect_timeout(&format!("127.0.0.1:{}", port).parse().unwrap(), Duration::from_secs(1)).is_ok()
+}
+
+#[tauri::command]
+async fn login(app_handle: AppHandle) -> Result<Value, String> {
+    let client = reqwest::Client::new();
+    let res = client.get("http://localhost:3001/login")
+        .send()
+        .await
+        .map_err(|e| e.to_string())?;
+    let json: Value = res.json()
+        .await
+        .map_err(|e| e.to_string())?;
+
+    // Bring the main window to the front
+    if let Some(window) = app_handle.get_window("main") {
+        window.set_focus().map_err(|e| e.to_string())?;
+    }
+    Ok(json)
+}
+
+#[tauri::command]
+async fn logout(app_handle: AppHandle) -> Result<Value, String> {
+    let client = reqwest::Client::new();
+    let res = client.get("http://localhost:3001/logout")
+        .send()
+        .await
+        .map_err(|e| e.to_string())?;
+    let json: Value = res.json()
+        .await
+        .map_err(|e| e.to_string())?;
+    // Bring the main window to the front
+    if let Some(window) = app_handle.get_window("main") {
+        window.set_focus().map_err(|e| e.to_string())?;
+    }
+    Ok(json)
+}
+
 
 #[tauri::command]
 fn run_python_command(
@@ -71,7 +115,36 @@ async fn close_splashscreen(window: Window) {
 fn main() {
     simple_logger::SimpleLogger::new().init().unwrap();
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![run_python_command, close_splashscreen])
+        .setup(|_app| {
+            // Get the resource path where your index.js is located
+            let resource_path = PathBuf::from("C:/Users/eteki/PycharmProjects/ms-tauri-desktop-auth/index.js");
+
+            println!("Resource path: {:?}", resource_path);
+            println!("Parent directory: {:?}", resource_path.parent().unwrap());
+            // Start the Node.js server when the app launches
+            let _handle = tauri::async_runtime::spawn(async move {
+                let output = std::process::Command::new("node")
+                    .arg(&resource_path)
+                    .current_dir(resource_path.parent().unwrap())
+                    .output()
+                    .expect("Failed to execute command");
+                println!("Node.js server output: {}", String::from_utf8_lossy(&output.stdout));
+                println!("Node.js server error: {}", String::from_utf8_lossy(&output.stderr));
+
+                // Wait for the server to start
+                let mut attempts = 0;
+                while !is_server_running(3001) {
+                    if attempts > 30 {  // Wait for up to 30 seconds
+                        panic!("Failed to start Node.js server after 30 seconds");
+                    }
+                    std::thread::sleep(Duration::from_secs(1));
+                    attempts += 1;
+                }
+                println!("Node.js server started successfully on port 3001");
+            });
+            Ok(())
+        })
+        .invoke_handler(tauri::generate_handler![login, logout, run_python_command, close_splashscreen])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
