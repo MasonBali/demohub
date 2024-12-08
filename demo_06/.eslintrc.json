@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "next/core-web-vitals", // Extends the recommended rules for Next.js Core Web Vitals
+    "next/typescript" // Extends the recommended rules for TypeScript in Next.js
+  ],
+  "rules": {
+    "react/no-unescaped-entities": "off", // Disables the rule that prevents unescaped entities in JSX
+    "@typescript-eslint/quotes": "off", // Disables the TypeScript-specific rule for enforcing consistent quotes
+    "quotes": [
+      0 // Disables the rule that enforces the consistent use of either backticks, double, or single quotes
+    ],
+    "avoidEscape": 0, // Disables the option to allow quotes to avoid escaping
+    "allowTemplateLiterals": 0, // Disables the option to allow template literals
+    "no-useless-escape": 0 // Disables the rule that disallows unnecessary escape characters
+  }
+}
